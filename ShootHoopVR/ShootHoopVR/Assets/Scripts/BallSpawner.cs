@@ -4,6 +4,7 @@ using System.Collections;
 public class BallSpawner : MonoBehaviour {
 
     public GameObject ballPrefab;
+    public int ballSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -12,11 +13,29 @@ public class BallSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 randomVector = new Vector3
-            (ballPrefab.transform.position.x + Random.Range(-1f,1f),
-            ballPrefab.transform.position.y,
-            ballPrefab.transform.position.z + Random.Range(-1f, 1f));
 
-        if (Input.GetKeyDown(KeyCode.Space))Instantiate(ballPrefab, randomVector,Quaternion.identity);
+        if (Input.GetKeyDown(KeyCode.W)) {
+            GameObject ballInstance = Instantiate(ballPrefab) as GameObject;
+            Rigidbody rb = ballInstance.GetComponent<Rigidbody>();
+            rb.velocity += Vector3.forward * ballSpeed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A)) {
+            GameObject ballInstance = Instantiate(ballPrefab) as GameObject;
+            Rigidbody rb = ballInstance.GetComponent<Rigidbody>();
+            rb.velocity += Vector3.left * ballSpeed;
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            GameObject ballInstance = Instantiate(ballPrefab) as GameObject;
+            Rigidbody rb = ballInstance.GetComponent<Rigidbody>();
+            rb.velocity += Vector3.back * ballSpeed;
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            GameObject ballInstance = Instantiate(ballPrefab) as GameObject;
+            Rigidbody rb = ballInstance.GetComponent<Rigidbody>();
+            rb.velocity += Vector3.right * ballSpeed;
+        }
 	}
 }
