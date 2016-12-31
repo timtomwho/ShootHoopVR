@@ -15,27 +15,28 @@ public class BallSpawner : MonoBehaviour {
 	void Update () {
 
         if (Input.GetKeyDown(KeyCode.W)) {
-            GameObject ballInstance = Instantiate(ballPrefab) as GameObject;
-            Rigidbody rb = ballInstance.GetComponent<Rigidbody>();
-            rb.velocity += Vector3.forward * ballSpeed;
+            
+            SpawnBall().velocity += Vector3.forward * ballSpeed;
         }
 
         if (Input.GetKeyDown(KeyCode.A)) {
-            GameObject ballInstance = Instantiate(ballPrefab) as GameObject;
-            Rigidbody rb = ballInstance.GetComponent<Rigidbody>();
-            rb.velocity += Vector3.left * ballSpeed;
+            SpawnBall().velocity += Vector3.left * ballSpeed;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            GameObject ballInstance = Instantiate(ballPrefab) as GameObject;
-            Rigidbody rb = ballInstance.GetComponent<Rigidbody>();
-            rb.velocity += Vector3.back * ballSpeed;
+            SpawnBall().velocity += Vector3.back * ballSpeed;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            GameObject ballInstance = Instantiate(ballPrefab) as GameObject;
-            Rigidbody rb = ballInstance.GetComponent<Rigidbody>();
-            rb.velocity += Vector3.right * ballSpeed;
+            SpawnBall().velocity += Vector3.right * ballSpeed;
         }
+        
 	}
+
+    Rigidbody SpawnBall()
+    {
+        GameObject ballInstance = Instantiate(ballPrefab) as GameObject;
+        Rigidbody rb = ballInstance.GetComponent<Rigidbody>();
+        return rb;
+    }
 }
